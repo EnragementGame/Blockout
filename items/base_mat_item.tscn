@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://bno4okupknkos"]
+
+[ext_resource type="Script" uid="uid://dme2ofv4u7opp" path="res://scripts/base_mat_item.gd" id="1_itu0u"]
+[ext_resource type="Material" uid="uid://buqidq0jf5kks" path="res://textures/mats/templates/item/mat_item.tres" id="1_trp8i"]
+[ext_resource type="PackedScene" uid="uid://brqsb10ccdahp" path="res://components/interactable.tscn" id="2_krlsb"]
+[ext_resource type="PackedScene" uid="uid://bifnb2kjnbuqd" path="res://components/item_base.tscn" id="3_7whkq"]
+[ext_resource type="PackedScene" uid="uid://ciq8draxl3tyu" path="res://components/mat_item.tscn" id="4_satrh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gammm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kclwe"]
+
+[node name="BaseMatItem" type="Node3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+script = ExtResource("1_itu0u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("BoxMesh_gammm")
+surface_material_override/0 = ExtResource("1_trp8i")
+
+[node name="Interactable" parent="." instance=ExtResource("2_krlsb")]
+
+[node name="ItemBase" parent="." instance=ExtResource("3_7whkq")]
+
+[node name="MatItem" parent="." instance=ExtResource("4_satrh")]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_kclwe")
+debug_color = Color(0, 0.6, 0.7, 0.42)

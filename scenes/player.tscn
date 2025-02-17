@@ -1,0 +1,311 @@
+[gd_scene load_steps=25 format=3 uid="uid://kkof85hfis3e"]
+
+[ext_resource type="Script" uid="uid://bn1cttm7g1dnh" path="res://scripts/player/player.gd" id="1_oj8h5"]
+[ext_resource type="PackedScene" uid="uid://db3a7i1g7snc8" path="res://models/assembled/prototim.tscn" id="2_uum52"]
+[ext_resource type="PackedScene" uid="uid://bq7c5ugvxcako" path="res://components/player_stats_handler.tscn" id="2_vnace"]
+[ext_resource type="PackedScene" uid="uid://ci8crw2gekqwp" path="res://components/mat_handler.tscn" id="4_mg73l"]
+[ext_resource type="PackedScene" uid="uid://biq2cbnqmbqix" path="res://components/health_man.tscn" id="4_u86t5"]
+[ext_resource type="Script" uid="uid://ddq3hpwsno6cq" path="res://resources/scripts/mat_stats.gd" id="5_fulsm"]
+[ext_resource type="Script" uid="uid://cyviksg1yib34" path="res://scripts/player/interaction.gd" id="6_7y2mt"]
+[ext_resource type="Script" uid="uid://dgnjfwy6ltk2f" path="res://scripts/player/weapon_inv.gd" id="7_8xs3f"]
+[ext_resource type="Script" uid="uid://fdw8ewbxs6im" path="res://scripts/player/inv.gd" id="7_ff3y3"]
+[ext_resource type="Script" uid="uid://d1uykr0fik2hi" path="res://scripts/ui/ui_manager.gd" id="9_f6yvd"]
+[ext_resource type="Script" uid="uid://eu0pevffoio1" path="res://scripts/ui/craft_select.gd" id="10_qfm1y"]
+[ext_resource type="Script" uid="uid://bpnbg6l87rxed" path="res://scripts/ui/craft_ui.gd" id="11_fulsm"]
+[ext_resource type="StyleBox" uid="uid://bc337eivjxhwq" path="res://textures/ui_background.tres" id="12_4r5pv"]
+[ext_resource type="Script" uid="uid://p1enkc3c3bwf" path="res://scripts/ui/inv_render.gd" id="13_60mlk"]
+[ext_resource type="StyleBox" uid="uid://o6f550rsumkr" path="res://textures/ui_background_inner.tres" id="14_i4ail"]
+[ext_resource type="Script" uid="uid://vgebx0jlds88" path="res://scripts/ui/item_area.gd" id="16_4ni07"]
+[ext_resource type="PackedScene" uid="uid://bqyh17ng05lpw" path="res://scenes/inv_button.tscn" id="16_4r5pv"]
+[ext_resource type="StyleBox" uid="uid://clo13e2rts31x" path="res://textures/ui_background_button_pressed_hover.tres" id="17_l71n6"]
+[ext_resource type="PackedScene" uid="uid://cwtgd7hj54wkw" path="res://scenes/weapon_button.tscn" id="18_60mlk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofnmn"]
+radius = 0.223801
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_i4ail"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_a38lo"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_4ni07"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ujl30"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 15
+script = ExtResource("1_oj8h5")
+sensitivity = 1.0
+
+[node name="Prototim" parent="." node_paths=PackedStringArray("regions") instance=ExtResource("2_uum52")]
+regions = {
+&"arms": NodePath("Arms"),
+&"feet": NodePath("Feet"),
+&"hands": NodePath("Hands"),
+&"legs": NodePath("Legs"),
+&"torso": NodePath("Torso"),
+&"waist": NodePath("Waist")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ofnmn")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="PlayerStatsHandler" parent="." instance=ExtResource("2_vnace")]
+maxHp = 100
+hpRegen = 2
+maxSp = 100
+spRegen = 4
+speed = 5.0
+jumpHeight = 3.0
+attackSpeed = 1.0
+fistDamage = 4
+stompDamage = 4
+
+[node name="MatHandler" parent="." node_paths=PackedStringArray("regions") instance=ExtResource("4_mg73l")]
+slots = Dictionary[StringName, ExtResource("5_fulsm")]({
+&"arms": null,
+&"feet": null,
+&"hands": null,
+&"legs": null,
+&"torso": null,
+&"waist": null
+})
+handlerName = &"Self"
+regions = NodePath("../Prototim")
+
+[node name="HealthMan" parent="." instance=ExtResource("4_u86t5")]
+oneShotProtection = true
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("9_f6yvd")
+
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Cam" type="Camera3D" parent="Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0461134, 0)
+cull_mask = 1048574
+current = true
+fov = 100.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Head/Cam"]
+
+[node name="HUD" type="Control" parent="Head/Cam/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Head/Cam/CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Interaction" type="RayCast3D" parent="Head/Cam"]
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 4
+script = ExtResource("6_7y2mt")
+
+[node name="WeaponInv" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_8xs3f")
+
+[node name="Inv" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_ff3y3")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CraftViewCam" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, -2.50444e-08, 1.30658e-07, 4.38197e-08, 0.865309, 0.501239, -1.25613e-07, 0.501239, -0.865309, 0, 1.7, -1.24)
+fov = 68.0
+
+[node name="InstatntiatePos" type="Node3D" parent="CraftViewCam"]
+unique_name_in_owner = true
+transform = Transform3D(1, -4.26326e-14, 7.10543e-14, 0, 1, 0, 5.68434e-14, 0, 1, -1.15787e-07, 0.0979623, -0.867403)
+
+[node name="CraftSelect" type="Node3D" parent="CraftViewCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 2.13163e-14, -2.98023e-08, 1, 0, 0, 0)
+script = ExtResource("10_qfm1y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CraftViewCam"]
+follow_viewport_enabled = true
+
+[node name="CraftUI" type="Control" parent="CraftViewCam/CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("11_fulsm")
+
+[node name="InvArea" type="Panel" parent="CraftViewCam/CanvasLayer/CraftUI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 408.0
+offset_bottom = 912.0
+theme_override_styles/panel = ExtResource("12_4r5pv")
+script = ExtResource("13_60mlk")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CraftViewCam/CanvasLayer/CraftUI/InvArea"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 876.0
+theme_override_styles/panel = ExtResource("14_i4ail")
+vertical_scroll_mode = 2
+
+[node name="Inventory" type="VBoxContainer" parent="CraftViewCam/CanvasLayer/CraftUI/InvArea/ScrollContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="InvButton" parent="CraftViewCam/CanvasLayer/CraftUI/InvArea/ScrollContainer/Inventory" instance=ExtResource("16_4r5pv")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_i4ail")
+
+[node name="ItemStats" type="Panel" parent="CraftViewCam/CanvasLayer/CraftUI"]
+layout_mode = 0
+offset_left = 1488.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 792.0
+theme_override_styles/panel = ExtResource("12_4r5pv")
+
+[node name="ItemArea" type="Panel" parent="CraftViewCam/CanvasLayer/CraftUI"]
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 624.0
+offset_right = 1480.0
+offset_bottom = 1072.0
+theme_override_styles/panel = ExtResource("12_4r5pv")
+script = ExtResource("16_4ni07")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 312.0
+offset_bottom = 432.0
+theme_override_styles/panel = ExtResource("14_i4ail")
+vertical_scroll_mode = 2
+
+[node name="CraftList" type="VBoxContainer" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="WeaponButton" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer/CraftList" instance=ExtResource("18_60mlk")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_a38lo")
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 312.0
+offset_bottom = 432.0
+theme_override_styles/panel = ExtResource("14_i4ail")
+vertical_scroll_mode = 2
+
+[node name="ModList" type="VBoxContainer" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer2"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="WeaponButton" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer2/ModList" instance=ExtResource("18_60mlk")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_4ni07")
+
+[node name="Confirm" type="Button" parent="CraftViewCam/CanvasLayer/CraftUI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 944.0
+offset_right = 416.0
+offset_bottom = 1040.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = ExtResource("12_4r5pv")
+theme_override_styles/hover_pressed = ExtResource("17_l71n6")
+theme_override_styles/hover = ExtResource("14_i4ail")
+theme_override_styles/pressed = ExtResource("14_i4ail")
+theme_override_styles/normal = ExtResource("12_4r5pv")
+text = "CONFIRM"
+
+[node name="Modify" type="Button" parent="CraftViewCam/CanvasLayer/CraftUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -432.0
+offset_top = 824.0
+offset_right = -16.0
+offset_bottom = 920.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover_pressed = ExtResource("17_l71n6")
+theme_override_styles/hover = ExtResource("14_i4ail")
+theme_override_styles/pressed = ExtResource("14_i4ail")
+theme_override_styles/normal = ExtResource("12_4r5pv")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ujl30")
+text = "MODIFY"
+
+[node name="Craft" type="Button" parent="CraftViewCam/CanvasLayer/CraftUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -432.0
+offset_top = 944.0
+offset_right = -16.0
+offset_bottom = 1040.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover_pressed = ExtResource("17_l71n6")
+theme_override_styles/hover = ExtResource("14_i4ail")
+theme_override_styles/pressed = ExtResource("14_i4ail")
+theme_override_styles/normal = ExtResource("12_4r5pv")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ujl30")
+text = "CRAFT"
+
+[connection signal="crafting_mode_changed" from="CraftViewCam/CanvasLayer/CraftUI" to="CraftViewCam/CanvasLayer/CraftUI/ItemArea" method="_on_craft_ui_crafting_mode_changed"]
+[connection signal="toggled" from="CraftViewCam/CanvasLayer/CraftUI/Modify" to="CraftViewCam/CanvasLayer/CraftUI" method="_on_modify_toggled"]
+[connection signal="toggled" from="CraftViewCam/CanvasLayer/CraftUI/Craft" to="CraftViewCam/CanvasLayer/CraftUI" method="_on_craft_toggled"]

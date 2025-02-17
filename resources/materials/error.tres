@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Mat_Stats" load_steps=4 format=3 uid="uid://c6aob2miglexa"]
+
+[ext_resource type="Script" path="res://resources/scripts/mat_stats.gd" id="1_wah3i"]
+[ext_resource type="Texture2D" uid="uid://bmrlyyvdlb5q3" path="res://textures/mat_textures/error_mat.png" id="2_nmsfd"]
+[ext_resource type="Script" path="res://resources/scripts/trait_identifier.gd" id="3_kl6bx"]
+
+[resource]
+script = ExtResource("1_wah3i")
+displayName = "ERROR"
+id = &"error"
+texture = ExtResource("2_nmsfd")
+damageOne = 0
+damageTwo = 0
+damageBonus = 0
+damageMulti = 0.0
+attackSpeed = 4.04
+reloadSpeed = 4.04
+critChance = 4.04
+critMulti = 0.0
+critBonus = 0
+healthOne = 0
+healthTwo = 0
+hpRegen = 0.0
+speed = 4.04
+staminaOne = 0
+staminaTwo = 0
+spRegen = 0.0
+traits = Array[ExtResource("3_kl6bx")]([])

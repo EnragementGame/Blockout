@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5rlnoxmvbrf2"]
+
+[ext_resource type="PackedScene" uid="uid://dcs3i7e4kevtq" path="res://models/assembled/pistol.tscn" id="1_5icxk"]
+[ext_resource type="PackedScene" uid="uid://ci8crw2gekqwp" path="res://components/mat_handler.tscn" id="2_f30ot"]
+
+[node name="Pistol" type="Node3D"]
+
+[node name="pistol" parent="." node_paths=PackedStringArray("regions") instance=ExtResource("1_5icxk")]
+regions = {
+&"pistol_barrel": null,
+&"pistol_firing_mechanism": null,
+&"pistol_grip": null
+}
+
+[node name="MatHandler" parent="." node_paths=PackedStringArray("regions") instance=ExtResource("2_f30ot")]
+handlerName = &"pistol"
+regions = NodePath("../pistol")

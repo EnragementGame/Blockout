@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcs3i7e4kevtq"]
+
+[ext_resource type="PackedScene" uid="uid://c1tuxgktnj2go" path="res://models/parts/pistol/pistol_barrel_inner.blend" id="1_vn6cy"]
+[ext_resource type="PackedScene" uid="uid://ghwv7sap8k1j" path="res://models/parts/pistol/pistol_barrel.blend" id="2_7p2d4"]
+[ext_resource type="Script" uid="uid://b6oaudhgs727p" path="res://models/model_regions.gd" id="2_8klrh"]
+[ext_resource type="PackedScene" uid="uid://bw7tq53se2d43" path="res://models/parts/pistol/pistol_hammer.blend" id="3_8x4ci"]
+[ext_resource type="PackedScene" uid="uid://b4j008jehl8ry" path="res://models/parts/pistol/pistol_trigger.blend" id="4_0f2g0"]
+[ext_resource type="PackedScene" uid="uid://nci648rj5k8f" path="res://models/parts/pistol/pistol_mag.blend" id="5_u8gbq"]
+[ext_resource type="PackedScene" uid="uid://bjt50wc3dcyrq" path="res://models/parts/pistol/pistol_grip.blend" id="6_02e4l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7p2d4"]
+size = Vector3(0.0974121, 0.0944824, 0.343842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8x4ci"]
+size = Vector3(0.0253906, 0.0271759, 0.0338135)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0f2g0"]
+size = Vector3(0.0234375, 0.0400391, 0.0395126)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8gbq"]
+size = Vector3(0.0869141, 0.146606, 0.0894775)
+
+[node name="pistol" type="Node3D" node_paths=PackedStringArray("regions")]
+script = ExtResource("2_8klrh")
+regions = {
+&"pistol_barrel": NodePath("Pistol_Barrel"),
+&"pistol_firing_mechanism": NodePath("Pistol_Firing_Mechanism"),
+&"pistol_grip": NodePath("Pistol_Grip")
+}
+
+[node name="Pistol_Barrel" type="Node3D" parent="."]
+
+[node name="pistol_barrel_inner" parent="Pistol_Barrel" instance=ExtResource("1_vn6cy")]
+
+[node name="pistol_barrel" parent="Pistol_Barrel" instance=ExtResource("2_7p2d4")]
+
+[node name="Area3D" type="Area3D" parent="Pistol_Barrel"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol_Barrel/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207, 0.0113525, 0.12767)
+shape = SubResource("BoxShape3D_7p2d4")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Pistol_Firing_Mechanism" type="Node3D" parent="."]
+
+[node name="pistol_hammer" parent="Pistol_Firing_Mechanism" instance=ExtResource("3_8x4ci")]
+
+[node name="pistol_trigger" parent="Pistol_Firing_Mechanism" instance=ExtResource("4_0f2g0")]
+
+[node name="Area3D" type="Area3D" parent="Pistol_Firing_Mechanism"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol_Firing_Mechanism/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0658188, -0.0408325)
+shape = SubResource("BoxShape3D_8x4ci")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Area3D2" type="Area3D" parent="Pistol_Firing_Mechanism"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol_Firing_Mechanism/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0483398, 0.0701561)
+shape = SubResource("BoxShape3D_0f2g0")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Pistol_Grip" type="Node3D" parent="."]
+
+[node name="pistol_mag" parent="Pistol_Grip" instance=ExtResource("5_u8gbq")]
+
+[node name="pistol_grip" parent="Pistol_Grip" instance=ExtResource("6_02e4l")]
+
+[node name="Area3D" type="Area3D" parent="Pistol_Grip"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pistol_Grip/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.104553, 0.00372314)
+shape = SubResource("BoxShape3D_u8gbq")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)

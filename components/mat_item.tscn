@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciq8draxl3tyu"]
+
+[ext_resource type="Script" uid="uid://cn3dm2s3kvkfx" path="res://components/component scripts/mat_item.gd" id="1_7r28r"]
+
+[node name="MatItem" type="Node3D"]
+script = ExtResource("1_7r28r")

@@ -1,0 +1,205 @@
+[gd_scene load_steps=13 format=3 uid="uid://db3a7i1g7snc8"]
+
+[ext_resource type="Script" uid="uid://b6oaudhgs727p" path="res://models/model_regions.gd" id="2_ttipn"]
+[ext_resource type="PackedScene" uid="uid://b28i05kb71ymu" path="res://models/parts/prototim/prototim_head.blend" id="2_xgupj"]
+[ext_resource type="PackedScene" uid="uid://cccfvj2tkaaxp" path="res://models/parts/prototim/prototim_arms.blend" id="3_fvyns"]
+[ext_resource type="PackedScene" uid="uid://d3pponqemyhmh" path="res://models/parts/prototim/prototim_hand_foot.blend" id="4_7v1dl"]
+[ext_resource type="PackedScene" uid="uid://dvn7k6387mau1" path="res://models/parts/prototim/prototim_torso.blend" id="5_le8n8"]
+[ext_resource type="PackedScene" uid="uid://bvi0ywcualmp5" path="res://models/parts/prototim/prototim_waist.blend" id="6_bxqwt"]
+[ext_resource type="PackedScene" uid="uid://bc8u4s1a1n4dq" path="res://models/parts/prototim/prototim_legs.blend" id="7_lnn4h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rnl2"]
+size = Vector3(0.421585, 0.11377, 0.113281)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvyns"]
+size = Vector3(0.166016, 0.15625, 0.173828)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xgupj"]
+size = Vector3(0.460938, 0.319336, 0.162109)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7v1dl"]
+size = Vector3(0.364258, 0.312012, 0.162109)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_le8n8"]
+size = Vector3(0.139648, 0.429947, 0.126953)
+
+[node name="Prototim" type="Node3D" node_paths=PackedStringArray("regions")]
+script = ExtResource("2_ttipn")
+regions = {
+&"arms": NodePath("Arms"),
+&"feet": NodePath("Feet"),
+&"hands": NodePath("Hands"),
+&"legs": NodePath("Legs"),
+&"torso": NodePath("Torso"),
+&"waist": NodePath("Waist")
+}
+
+[node name="prototim_head" parent="." instance=ExtResource("2_xgupj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69817, 0)
+
+[node name="Arms" type="Node3D" parent="."]
+
+[node name="prototim_arms_left" parent="Arms" instance=ExtResource("3_fvyns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.6, 0)
+
+[node name="prototim_arms_right" parent="Arms" instance=ExtResource("3_fvyns")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.3, 1.6, 0)
+
+[node name="Area3D" type="Area3D" parent="Arms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.729302, 1.6, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arms/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14901, 0.000244141, 0)
+shape = SubResource("BoxShape3D_5rnl2")
+debug_color = Color(0.69477, 0.282489, 1, 0.42)
+
+[node name="Area3D3" type="Area3D" parent="Arms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.300261, 1.6, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arms/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14901, 0.000244141, 0)
+shape = SubResource("BoxShape3D_5rnl2")
+debug_color = Color(0.69477, 0.282489, 1, 0.42)
+
+[node name="Area3D2" type="Area3D" parent="Arms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.384783, 1.6, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arms/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0642242, 0.000244141, 0)
+shape = SubResource("BoxShape3D_5rnl2")
+debug_color = Color(0.69477, 0.282489, 1, 0.42)
+
+[node name="Area3D4" type="Area3D" parent="Arms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.814691, 1.6, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arms/Area3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0642242, 0.000244141, 0)
+shape = SubResource("BoxShape3D_5rnl2")
+debug_color = Color(0.69477, 0.282489, 1, 0.42)
+
+[node name="Hands" type="Node3D" parent="."]
+
+[node name="prototim_hand_left" parent="Hands" instance=ExtResource("4_7v1dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18, 1.6, 0)
+
+[node name="prototim_hand_right" parent="Hands" instance=ExtResource("4_7v1dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.185, 1.6, 0)
+
+[node name="Area3D" type="Area3D" parent="Hands"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18, 1.6, 0)
+shape = SubResource("BoxShape3D_fvyns")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Area3D2" type="Area3D" parent="Hands"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hands/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18356, 1.6, 0)
+shape = SubResource("BoxShape3D_fvyns")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Torso" type="Node3D" parent="."]
+
+[node name="prototim_torso" parent="Torso" instance=ExtResource("5_le8n8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4397, 0)
+
+[node name="Area3D" type="Area3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52043, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Torso/Area3D"]
+shape = SubResource("BoxShape3D_xgupj")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Waist" type="Node3D" parent="."]
+
+[node name="prototim_waist" parent="Waist" instance=ExtResource("6_bxqwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11971, 0)
+
+[node name="Area3D" type="Area3D" parent="Waist"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17224, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Waist/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0256348, 0)
+shape = SubResource("BoxShape3D_7v1dl")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Legs" type="Node3D" parent="."]
+
+[node name="prototim_legs_right" parent="Legs" instance=ExtResource("7_lnn4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.21, 0)
+
+[node name="prototim_legs_left" parent="Legs" instance=ExtResource("7_lnn4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.21, 0)
+
+[node name="Area3D" type="Area3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.591772, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Legs/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102173, 0.214775, 0)
+shape = SubResource("BoxShape3D_le8n8")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Area3D2" type="Area3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.164335, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Legs/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102173, 0.214775, 0)
+shape = SubResource("BoxShape3D_le8n8")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Area3D3" type="Area3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202143, 0.591772, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Legs/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102173, 0.214775, 0)
+shape = SubResource("BoxShape3D_le8n8")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Area3D4" type="Area3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202143, 0.164335, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Legs/Area3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.102173, 0.214775, 0)
+shape = SubResource("BoxShape3D_le8n8")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Feet" type="Node3D" parent="."]
+
+[node name="prototim_foot_left" parent="Feet" instance=ExtResource("4_7v1dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.075, 0)
+
+[node name="prototim_foot_right" parent="Feet" instance=ExtResource("4_7v1dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105, 0.075, 0)
+
+[node name="Area3D" type="Area3D" parent="Feet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1021, 0.078, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Area3D"]
+shape = SubResource("BoxShape3D_fvyns")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)
+
+[node name="Area3D2" type="Area3D" parent="Feet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.101827, 0.0780601, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Feet/Area3D2"]
+shape = SubResource("BoxShape3D_fvyns")
+debug_color = Color(0.694118, 0.282353, 1, 0.419608)

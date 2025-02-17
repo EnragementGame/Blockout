@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1bciiel2qcxn"]
+
+[ext_resource type="Script" uid="uid://busgdwj6l156d" path="res://components/component scripts/trait.gd" id="1_ldbyt"]
+
+[node name="Null_Trait" type="Node3D"]
+script = ExtResource("1_ldbyt")
+traitId = &"empty"
+traitName = "Nothing here bozo"
+traitColour = Color(1, 1, 1, 0)

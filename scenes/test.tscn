@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhpp2gauikb2d"]
+
+[ext_resource type="PackedScene" uid="uid://kkof85hfis3e" path="res://scenes/player.tscn" id="1_ui741"]
+[ext_resource type="PackedScene" uid="uid://bno4okupknkos" path="res://items/base_mat_item.tscn" id="2_fvyd8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7f8tr"]
+size = Vector3(30.085, 0.001, 29.7715)
+
+[node name="Test" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_7f8tr")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00740862, 0)
+layers = 2
+size = Vector3(30, 0.01, 30)
+
+[node name="Player" parent="." instance=ExtResource("1_ui741")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.207179, 0.474424, 0.0948908)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.505191, 0.863008, 0, -0.863008, 0.505191, 0, 3.91538, 8.85202)
+layers = 2
+
+[node name="BaseMatItem" parent="." instance=ExtResource("2_fvyd8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1.12426, 0.514757, -2.07727)
+matId = &"null"
+
+[node name="BaseMatItem4" parent="." instance=ExtResource("2_fvyd8")]
+transform = Transform3D(0.249988, -0.0024347, 0, 0.0024347, 0.249988, 0, 0, 0, 0.25, 0, 0.514757, -2.98106)
+matId = &"null"
+
+[node name="BaseMatItem5" parent="." instance=ExtResource("2_fvyd8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.514757, -2.12719)
+matId = &"green_goop"
+
+[node name="BaseMatItem2" parent="." instance=ExtResource("2_fvyd8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.965952, 0.514757, -2.07727)
+matId = &"brick"
+
+[node name="BaseMatItem3" parent="." instance=ExtResource("2_fvyd8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.14647, 0.514757, -2.07727)
+count = 5
+matId = &"brick"

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blpxvcx6il7xk"]
+
+[ext_resource type="Texture2D" uid="uid://m3qxr5h6lvqs" path="res://textures/mat_textures/text_align.png" id="1_bpwx5"]
+
+[resource]
+albedo_texture = ExtResource("1_bpwx5")
+uv1_scale = Vector3(12, 12, 12)
+uv1_offset = Vector3(0.1, -0.725, 0)
+uv1_triplanar = true

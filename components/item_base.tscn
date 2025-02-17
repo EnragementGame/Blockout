@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bifnb2kjnbuqd"]
+
+[ext_resource type="Script" uid="uid://mv1sqjgratyg" path="res://components/component scripts/item_base.gd" id="1_12ubo"]
+
+[node name="ItemBase" type="Node3D"]
+script = ExtResource("1_12ubo")
+itemCount = 1
+identifier = null

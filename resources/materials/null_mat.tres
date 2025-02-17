@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Mat_Stats" load_steps=4 format=3 uid="uid://6452ndddoyti"]
+
+[ext_resource type="Script" uid="uid://ddq3hpwsno6cq" path="res://resources/scripts/mat_stats.gd" id="1_fx25p"]
+[ext_resource type="Texture2D" uid="uid://bfg5k5q0o035" path="res://textures/mat_textures/null_mat.png" id="2_iqmul"]
+[ext_resource type="Script" uid="uid://c843lhmm4mc7f" path="res://resources/scripts/trait_identifier.gd" id="3_m6efg"]
+
+[resource]
+script = ExtResource("1_fx25p")
+displayName = "Empty"
+id = &"null"
+texture = ExtResource("2_iqmul")
+damageOne = 0
+damageTwo = 0
+damageBonus = 0
+damageMulti = 0.0
+attackSpeed = 0.0
+reloadSpeed = 0.0
+critChance = 0.0
+critMulti = 0.0
+critBonus = 0
+healthOne = 0
+healthTwo = 0
+hpRegen = 0.0
+speed = 0.0
+staminaOne = 0
+staminaTwo = 0
+spRegen = 0.0
+traits = Array[ExtResource("3_m6efg")]([])

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Mat_Stats" load_steps=4 format=3 uid="uid://c8m0v2o4d5hst"]
+
+[ext_resource type="Script" path="res://resources/scripts/mat_stats.gd" id="1_gi162"]
+[ext_resource type="Texture2D" uid="uid://f16xiqgrggs8" path="res://textures/mat_textures/bricks_mat.png" id="2_trj3n"]
+[ext_resource type="Script" path="res://resources/scripts/trait_identifier.gd" id="3_50amk"]
+
+[resource]
+script = ExtResource("1_gi162")
+displayName = "Brick"
+id = &"brick"
+texture = ExtResource("2_trj3n")
+damageOne = 10
+damageTwo = 10
+damageBonus = 0
+damageMulti = 0.0
+attackSpeed = 3.0
+reloadSpeed = 0.0
+critChance = 1.0
+critMulti = 1.5
+critBonus = 0
+healthOne = 25
+healthTwo = 5
+hpRegen = 0.2
+speed = 2.5
+staminaOne = 25
+staminaTwo = 5
+spRegen = 0.5
+traits = Array[ExtResource("3_50amk")]([])
