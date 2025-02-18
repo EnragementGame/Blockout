@@ -38,6 +38,7 @@ func updateModList():
 		loopCount += 1
 	print(modList.get_children())
 
+#Updates the current UI in the area where weapons are listed to craft/modify
 func _on_craft_ui_crafting_mode_changed() -> void:
 	print(craftUi.crafting)
 	if craftUi.crafting:
@@ -48,4 +49,3 @@ func _on_craft_ui_crafting_mode_changed() -> void:
 		craftList.get_parent().visible = false
 		modList.get_parent().visible = true
 		updateModList()
-	print(craftList.get_parent().visible)

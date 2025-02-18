@@ -1,12 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://kkof85hfis3e"]
+[gd_scene load_steps=24 format=3 uid="uid://kkof85hfis3e"]
 
 [ext_resource type="Script" uid="uid://bn1cttm7g1dnh" path="res://scripts/player/player.gd" id="1_oj8h5"]
 [ext_resource type="PackedScene" uid="uid://db3a7i1g7snc8" path="res://models/assembled/prototim.tscn" id="2_uum52"]
-[ext_resource type="PackedScene" uid="uid://bq7c5ugvxcako" path="res://components/player_stats_handler.tscn" id="2_vnace"]
-[ext_resource type="PackedScene" uid="uid://ci8crw2gekqwp" path="res://components/mat_handler.tscn" id="4_mg73l"]
-[ext_resource type="PackedScene" uid="uid://biq2cbnqmbqix" path="res://components/health_man.tscn" id="4_u86t5"]
+[ext_resource type="Script" uid="uid://cq8rprdgv34mo" path="res://components/component scripts/player_stats_handler.gd" id="3_4r5pv"]
+[ext_resource type="Script" uid="uid://bq11fd8jcy8od" path="res://components/component scripts/mat_handler.gd" id="4_60mlk"]
 [ext_resource type="Script" uid="uid://ddq3hpwsno6cq" path="res://resources/scripts/mat_stats.gd" id="5_fulsm"]
 [ext_resource type="Script" uid="uid://cyviksg1yib34" path="res://scripts/player/interaction.gd" id="6_7y2mt"]
+[ext_resource type="Script" uid="uid://ckf516ehid116" path="res://components/component scripts/health_man.gd" id="6_i4ail"]
 [ext_resource type="Script" uid="uid://dgnjfwy6ltk2f" path="res://scripts/player/weapon_inv.gd" id="7_8xs3f"]
 [ext_resource type="Script" uid="uid://fdw8ewbxs6im" path="res://scripts/player/inv.gd" id="7_ff3y3"]
 [ext_resource type="Script" uid="uid://d1uykr0fik2hi" path="res://scripts/ui/ui_manager.gd" id="9_f6yvd"]
@@ -19,18 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bqyh17ng05lpw" path="res://scenes/inv_button.tscn" id="16_4r5pv"]
 [ext_resource type="StyleBox" uid="uid://clo13e2rts31x" path="res://textures/ui_background_button_pressed_hover.tres" id="17_l71n6"]
 [ext_resource type="PackedScene" uid="uid://cwtgd7hj54wkw" path="res://scenes/weapon_button.tscn" id="18_60mlk"]
+[ext_resource type="ButtonGroup" uid="uid://bnxuswho6rk61" path="res://resources/button_groups/craftlistbuttons.tres" id="19_i4ail"]
+[ext_resource type="ButtonGroup" uid="uid://bo7lhieh0cfgj" path="res://resources/button_groups/modlistbuttons.tres" id="20_a38lo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofnmn"]
 radius = 0.223801
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_i4ail"]
-allow_unpress = true
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_a38lo"]
-allow_unpress = true
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_4ni07"]
-allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ujl30"]
 
@@ -54,7 +47,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ofnmn")
 debug_color = Color(0, 0.6, 0.7, 0.42)
 
-[node name="PlayerStatsHandler" parent="." instance=ExtResource("2_vnace")]
+[node name="PlayerStatsHandler" type="Node3D" parent="."]
+script = ExtResource("3_4r5pv")
 maxHp = 100
 hpRegen = 2
 maxSp = 100
@@ -65,7 +59,8 @@ attackSpeed = 1.0
 fistDamage = 4
 stompDamage = 4
 
-[node name="MatHandler" parent="." node_paths=PackedStringArray("regions") instance=ExtResource("4_mg73l")]
+[node name="MatHandler" type="Node3D" parent="." node_paths=PackedStringArray("regions")]
+script = ExtResource("4_60mlk")
 slots = Dictionary[StringName, ExtResource("5_fulsm")]({
 &"arms": null,
 &"feet": null,
@@ -77,7 +72,8 @@ slots = Dictionary[StringName, ExtResource("5_fulsm")]({
 handlerName = &"Self"
 regions = NodePath("../Prototim")
 
-[node name="HealthMan" parent="." instance=ExtResource("4_u86t5")]
+[node name="HealthMan" type="Node3D" parent="."]
+script = ExtResource("6_i4ail")
 oneShotProtection = true
 
 [node name="UIManager" type="Node" parent="."]
@@ -192,7 +188,6 @@ theme_override_constants/separation = 2
 
 [node name="InvButton" parent="CraftViewCam/CanvasLayer/CraftUI/InvArea/ScrollContainer/Inventory" instance=ExtResource("16_4r5pv")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_i4ail")
 
 [node name="ItemStats" type="Panel" parent="CraftViewCam/CanvasLayer/CraftUI"]
 layout_mode = 0
@@ -230,10 +225,9 @@ theme_override_constants/separation = 2
 
 [node name="WeaponButton" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer/CraftList" instance=ExtResource("18_60mlk")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_a38lo")
+button_group = ExtResource("19_i4ail")
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea"]
-visible = false
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -252,7 +246,7 @@ theme_override_constants/separation = 2
 
 [node name="WeaponButton" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer2/ModList" instance=ExtResource("18_60mlk")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_4ni07")
+button_group = ExtResource("20_a38lo")
 
 [node name="Confirm" type="Button" parent="CraftViewCam/CanvasLayer/CraftUI"]
 layout_mode = 0

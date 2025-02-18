@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5rlnoxmvbrf2"]
 
 [ext_resource type="PackedScene" uid="uid://dcs3i7e4kevtq" path="res://models/assembled/pistol.tscn" id="1_5icxk"]
-[ext_resource type="PackedScene" uid="uid://ci8crw2gekqwp" path="res://components/mat_handler.tscn" id="2_f30ot"]
+[ext_resource type="Script" uid="uid://bq11fd8jcy8od" path="res://components/component scripts/mat_handler.gd" id="2_5icxk"]
 
 [node name="Pistol" type="Node3D"]
 
@@ -12,6 +12,7 @@ regions = {
 &"pistol_grip": null
 }
 
-[node name="MatHandler" parent="." node_paths=PackedStringArray("regions") instance=ExtResource("2_f30ot")]
+[node name="MatHandler" type="Node3D" parent="." node_paths=PackedStringArray("regions")]
+script = ExtResource("2_5icxk")
 handlerName = &"pistol"
 regions = NodePath("../pistol")

@@ -3,7 +3,7 @@ extends Node
 #UI Elements
 @onready var hud : Control = %HUD
 @onready var crafting : Control = %CraftUI
-var containerOpen : Control ##Gonna be implimented later
+var containerOpen : Control ##Gonna be implimented later maybe
 #Toggle Elements
 @onready var player : Player = get_parent()
 @onready var craftingCam : Camera3D = %CraftViewCam

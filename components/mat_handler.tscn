@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci8crw2gekqwp"]
-
-[ext_resource type="Script" uid="uid://bq11fd8jcy8od" path="res://components/component scripts/mat_handler.gd" id="1_i5xa3"]
-
-[node name="MatHandler" type="Node3D"]
-script = ExtResource("1_i5xa3")

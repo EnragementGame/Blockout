@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dme2ofv4u7opp" path="res://scripts/base_mat_item.gd" id="1_itu0u"]
 [ext_resource type="Material" uid="uid://buqidq0jf5kks" path="res://textures/mats/templates/item/mat_item.tres" id="1_trp8i"]
-[ext_resource type="PackedScene" uid="uid://brqsb10ccdahp" path="res://components/interactable.tscn" id="2_krlsb"]
-[ext_resource type="PackedScene" uid="uid://bifnb2kjnbuqd" path="res://components/item_base.tscn" id="3_7whkq"]
-[ext_resource type="PackedScene" uid="uid://ciq8draxl3tyu" path="res://components/mat_item.tscn" id="4_satrh"]
+[ext_resource type="Script" uid="uid://ca2wbjiqtjlpi" path="res://components/component scripts/interactable.gd" id="3_l4rlc"]
+[ext_resource type="Script" uid="uid://mv1sqjgratyg" path="res://components/component scripts/item_base.gd" id="4_wny0a"]
+[ext_resource type="Script" uid="uid://cn3dm2s3kvkfx" path="res://components/component scripts/mat_item.gd" id="5_gwcqm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gammm"]
 
@@ -19,11 +19,16 @@ layers = 2
 mesh = SubResource("BoxMesh_gammm")
 surface_material_override/0 = ExtResource("1_trp8i")
 
-[node name="Interactable" parent="." instance=ExtResource("2_krlsb")]
+[node name="Interactable" type="Node3D" parent="."]
+script = ExtResource("3_l4rlc")
 
-[node name="ItemBase" parent="." instance=ExtResource("3_7whkq")]
+[node name="ItemBase" type="Node3D" parent="."]
+script = ExtResource("4_wny0a")
+itemCount = 1
+identifier = null
 
-[node name="MatItem" parent="." instance=ExtResource("4_satrh")]
+[node name="MatItem" type="Node3D" parent="."]
+script = ExtResource("5_gwcqm")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 4

@@ -8,7 +8,7 @@ func _process(_delta):
 	if craftUi.visible:
 		selectionRay()
 
-func selectionRay():
+func selectionRay(): #A standard raycast that detects what area of the model is highlighted/selected
 	var spaceState = get_world_3d().direct_space_state
 	var mousePos : Vector2 = get_viewport().get_mouse_position()
 	var camera : Camera3D = get_parent()
@@ -27,6 +27,6 @@ func selectionRay():
 	hoveredPart = hit.collider.get_parent()
 
 	if Input.is_action_just_pressed("Menu_Select") && hoveredPart:
-		selectedPart = hoveredPart
-		craftUi.selectedPart = selectedPart.get_parent().regions.find_key(selectedPart)
+		selectedPart = hoveredPart #Update the selected part
+		craftUi.selectedPart = selectedPart.get_parent().regions.find_key(selectedPart) #Sends the selectec parts ID to Craft_UI to use in material_update()
 		print(craftUi.selectedPart)
