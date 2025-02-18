@@ -23,7 +23,7 @@ func reload_weapons_list() -> void:
 		weapons[weapon.id] = weapon
 		print(weapons)
 
-func mat_find(id: StringName) -> Weapon_Identifier:
+func mat_find(id: StringName) -> Weapon_Identifier: #Loads a weapon with from weapons with an ID
 	if id in weapons:
 		return weapons[id]
 	push_warning(id + " is not a valid ID, returning Pistol.")

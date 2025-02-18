@@ -19,7 +19,7 @@ var selectedPart : StringName
 func _ready():
 	crafting_mode_changed.emit()
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func weapon_update(id : StringName): #Loads the weapon and sets the craftingMatHand to whatever the ID is.

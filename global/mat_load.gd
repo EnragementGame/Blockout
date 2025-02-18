@@ -23,7 +23,7 @@ func reload_mats_list() -> void:
 		mats[mat.id] = mat
 		print(mats)
 
-func mat_find(id: StringName) -> Mat_Stats:
+func mat_find(id: StringName) -> Mat_Stats: #Loads the material from mats using an ID.
 	if id in mats:
 		return mats[id]
 	push_warning(id + " is not a valid ID, setting to null.")

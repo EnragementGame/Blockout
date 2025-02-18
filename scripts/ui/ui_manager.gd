@@ -11,7 +11,7 @@ var containerOpen : Control ##Gonna be implimented later maybe
 #Booleans
 var isCrafting : bool
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("Close_UI"):
 		if isCrafting:
 			closeCrafting()
