@@ -36,4 +36,3 @@ collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_kclwe")
-debug_color = Color(0, 0.6, 0.7, 0.42)

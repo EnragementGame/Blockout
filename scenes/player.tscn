@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://kkof85hfis3e"]
+[gd_scene load_steps=25 format=3 uid="uid://kkof85hfis3e"]
 
 [ext_resource type="Script" uid="uid://bn1cttm7g1dnh" path="res://scripts/player/player.gd" id="1_oj8h5"]
 [ext_resource type="PackedScene" uid="uid://db3a7i1g7snc8" path="res://models/assembled/prototim.tscn" id="2_uum52"]
@@ -19,11 +19,18 @@
 [ext_resource type="PackedScene" uid="uid://bqyh17ng05lpw" path="res://scenes/inv_button.tscn" id="16_4r5pv"]
 [ext_resource type="StyleBox" uid="uid://clo13e2rts31x" path="res://textures/ui_background_button_pressed_hover.tres" id="17_l71n6"]
 [ext_resource type="PackedScene" uid="uid://cwtgd7hj54wkw" path="res://scenes/weapon_button.tscn" id="18_60mlk"]
-[ext_resource type="ButtonGroup" uid="uid://bnxuswho6rk61" path="res://resources/button_groups/craftlistbuttons.tres" id="19_i4ail"]
-[ext_resource type="ButtonGroup" uid="uid://bo7lhieh0cfgj" path="res://resources/button_groups/modlistbuttons.tres" id="20_a38lo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofnmn"]
 radius = 0.223801
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_4r5pv"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_60mlk"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_i4ail"]
+allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ujl30"]
 
@@ -45,7 +52,6 @@ regions = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ofnmn")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="PlayerStatsHandler" type="Node3D" parent="."]
 script = ExtResource("3_4r5pv")
@@ -188,6 +194,7 @@ theme_override_constants/separation = 2
 
 [node name="InvButton" parent="CraftViewCam/CanvasLayer/CraftUI/InvArea/ScrollContainer/Inventory" instance=ExtResource("16_4r5pv")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_4r5pv")
 
 [node name="ItemStats" type="Panel" parent="CraftViewCam/CanvasLayer/CraftUI"]
 layout_mode = 0
@@ -225,7 +232,7 @@ theme_override_constants/separation = 2
 
 [node name="WeaponButton" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer/CraftList" instance=ExtResource("18_60mlk")]
 layout_mode = 2
-button_group = ExtResource("19_i4ail")
+button_group = SubResource("ButtonGroup_60mlk")
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea"]
 layout_mode = 0
@@ -246,7 +253,7 @@ theme_override_constants/separation = 2
 
 [node name="WeaponButton" parent="CraftViewCam/CanvasLayer/CraftUI/ItemArea/ScrollContainer2/ModList" instance=ExtResource("18_60mlk")]
 layout_mode = 2
-button_group = ExtResource("20_a38lo")
+button_group = SubResource("ButtonGroup_i4ail")
 
 [node name="Confirm" type="Button" parent="CraftViewCam/CanvasLayer/CraftUI"]
 layout_mode = 0
