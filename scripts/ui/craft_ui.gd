@@ -38,7 +38,7 @@ func weapon_update(id : StringName): #Loads the weapon and sets the craftingMatH
 func material_update(id : StringName):
 	if selectedPart == null || craftingMatHand == null:
 		return
-	craftingMatHand.slots[selectedPart] = MatLoad.mat_find(id) #Updates the slot with the same ID as the selectedPart to whatever material is selevted.
+	craftingMatHand.slots[selectedPart] = MatLoad.mat_find(id) #Updates the slot with the same ID as the selectedPart to whatever material is selected.
 	craftingMatHand.updateRegion(selectedPart)
 
 func _on_craft_toggled(toggled_on:bool) -> void:
